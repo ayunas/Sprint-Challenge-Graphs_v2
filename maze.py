@@ -32,13 +32,13 @@ class Maze:
     
     def backtrack(self,trail,player):
             print('reached a dead end, backtracking...')
-            print('current room id', player.current_room.id)
             room_id = player.current_room.id
             print('trail in backtrack', trail)
             
             for step_id in trail[1:-1]:
                 next_way = [way for way in self.rooms[room_id] if self.rooms[room_id][way] == step_id][0]
                 player.travel(next_way)
+                self.path.append(next_way)
                 print(f'player backtracked from {room_id} to {step_id}')
                 room_id = player.current_room.id
             print('room_id', room_id)
